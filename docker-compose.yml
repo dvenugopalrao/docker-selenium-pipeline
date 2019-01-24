@@ -1,0 +1,42 @@
+version: "3"
+services:
+  selenium-hub:
+    image: selenium/hub
+    container_name: selenium-hub
+    environment:
+      - GRID_MAX_SESSION=10
+      - GRID_BROWSER_TIMEOUT=100000
+      - GRID_TIMEOUT=90000
+      - GRID_NEW_SESSION_WAIT_TIMEOUT=300000
+    ports:
+      - "4444:4444"
+  chrome:
+    image: selenium/node-chrome
+    depends_on:
+      - selenium-hub
+    environment:
+      - HUB_PORT_4444_TCP_ADDR=selenium-hub
+      - HUB_PORT_4444_TCP_PORT=4444
+      - NODE_MAX_SESSION=10
+      - NODE_MAX_INSTANCES=10
+  firefox:
+    image: selenium/node-firefox
+    depends_on:
+      - selenium-hub
+    environment:
+      - HUB_PORT_4444_TCP_ADDR=selenium-hub
+      - HUB_PORT_4444_TCP_PORT=4444
+      - NODE_MAX_SESSION=10
+      - NODE_MAX_INSTANCES=10
+  search-module:
+    image: vinsdocker/containertest:demo
+    container_name: search-module
+    depends_on:
+      - firefox
+      - chrome
+    environment:
+      - MODULE=search-module.xml
+      - BROWSER=chrome
+      - SELENIUM_HUB=selenium-hub
+    volumes:
+      - /c/Users/vdonekal.ORADEV/data1/search-module-result:/test-output
