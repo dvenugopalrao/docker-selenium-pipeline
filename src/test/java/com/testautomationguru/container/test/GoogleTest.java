@@ -69,7 +69,7 @@ public class GoogleTest {
 
     @Test
      public void googleTest() throws InterruptedException {
-	System.out.println("******** Testing the Integration ");
+	System.out.println("******** Testing the Integration V1 ");
      	System.out.println("******** Starting the google Test method ");
          google.goTo();
          System.out.println("******** Lauching title");
