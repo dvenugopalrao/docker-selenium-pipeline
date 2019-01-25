@@ -1,7 +1,6 @@
 pipeline {
     agent any
     stages { 	
-        withEnv(['PATH+EXTRA=C:\Program Files\Git\usr\bin'])
         stage('Build Jar') {
             steps {
                 sh 'mvn clean package -DskipTests'
