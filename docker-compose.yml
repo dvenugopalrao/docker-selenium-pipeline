@@ -29,7 +29,7 @@ services:
       - NODE_MAX_SESSION=10
       - NODE_MAX_INSTANCES=10
   search-module:
-    image: vinsdocker/containertest:demo
+    image: dvenugopalrao/containertest:demo
     container_name: search-module
     depends_on:
       - firefox
