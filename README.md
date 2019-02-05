@@ -1,4 +1,2 @@
 # docker-selenium-pipeline
-
-Test
-12345678
+E2E Demo
